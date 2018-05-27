@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.rhsolucao.daos.FuncionarioDAO;
 import br.com.rhsolucao.models.Funcionario;
@@ -25,11 +26,12 @@ public class FuncionariosController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String gravar(Funcionario funcionario) {
+	public ModelAndView gravar(Funcionario funcionario, RedirectAttributes redirectAttributes) {
 		
 		System.out.println(funcionario);
 		funcionarioDAO.gravar(funcionario);
-		return "funcionarios/lista";
+		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
+		return new ModelAndView("redirect:funcionarios");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
