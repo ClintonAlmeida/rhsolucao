@@ -2,8 +2,13 @@ package br.com.rhsolucao.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.rhsolucao.daos.FuncionarioDAO;
 import br.com.rhsolucao.models.Funcionario;
+import br.com.rhsolucao.validation.FuncionarioValidation;
 
 @Controller
 @RequestMapping("funcionarios")
@@ -20,13 +26,17 @@ public class FuncionariosController {
 	private FuncionarioDAO funcionarioDAO;
 	
 	@RequestMapping("/form")
-	public String form() {
-		return "funcionarios/form";
+	public ModelAndView form() {
+		return new ModelAndView("funcionarios/form");
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView gravar(Funcionario funcionario, RedirectAttributes redirectAttributes) {
+	public ModelAndView gravar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes redirectAttributes) {
+		
+		if(result.hasErrors()) {
+			return form();
+		}
 		
 		System.out.println(funcionario);
 		funcionarioDAO.gravar(funcionario);
@@ -42,6 +52,11 @@ public class FuncionariosController {
 		modelAndView.addObject("funcionarios", funcionarios);
 		System.out.println("Acessando lista de usuarios");
 		return modelAndView;
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new FuncionarioValidation());
 	}
 	
 	
