@@ -19,7 +19,7 @@ import br.com.rhsolucao.models.Funcionario;
 import br.com.rhsolucao.validation.FuncionarioValidation;
 
 @Controller
-@RequestMapping("funcionarios")
+@RequestMapping("/funcionarios")
 public class FuncionariosController {
 	
 	@Autowired
