@@ -12,19 +12,25 @@
     <form:form action="${s:mvcUrl('FC#gravar').build()}" method="POST" commandName="funcionario">
         <div>
             <label>Nome</label>
-            <input type="text" name="nome" />
+            <form:input path="nome" />
             <form:errors path="nome"/>
         </div>
         <div>
             <label>Cargo</label>
-            <input type="text" name="cargo"/>
+            <form:input path="cargo"/>
         	<form:errors path="cargo"/>
         </div>
         <div>
             <label>Departamento</label>
-            <input type="text" name="departamento" />
+            <form:input path="departamento" />
         	<form:errors path="departamento"/>
         </div>
+        <div>
+        	<label>Data de Contratacao</label>
+        	<form:input path="dataContratacao"/>
+        	<form:errors path="dataContratacao"/>
+        </div>
+        
         <button type="submit">Cadastrar</button>
     </form:form>
 </body>

@@ -26,7 +26,7 @@ public class FuncionariosController {
 	private FuncionarioDAO funcionarioDAO;
 	
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Funcionario funcionario) {
 		return new ModelAndView("funcionarios/form");
 	}
 	
@@ -35,7 +35,7 @@ public class FuncionariosController {
 	public ModelAndView gravar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes redirectAttributes) {
 		
 		if(result.hasErrors()) {
-			return form();
+			return form(funcionario);
 		}
 		
 		System.out.println(funcionario);
