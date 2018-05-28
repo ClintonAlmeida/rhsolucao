@@ -6,12 +6,16 @@
 <html>
 <head>
 <meta charset=UTF-8>
+
+<c:url value="/resourcers/css" var="cssPath" />
+<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
+
 <title>RH SOLUCAO</title>
 </head>
 <body>
 	<h1>Lista de Funcionarios</h1>
 	<div>${sucesso }</div>
-	<table>
+	<table class="table table-bordered table-striped table-hover">
 		<tr>
 			<td>Nome</td>
 			<td>Cargo</td>
