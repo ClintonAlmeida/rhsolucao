@@ -16,12 +16,13 @@ public class FuncionarioDAO {
 
 	@PersistenceContext
 	private EntityManager manager;
-	
+
 	public void gravar(Funcionario funcionario) {
 		manager.persist(funcionario);
 	}
-	
-	public List<Funcionario> listar(){
+
+	public List<Funcionario> listar() {
 		return manager.createQuery("select f from Funcionario f", Funcionario.class).getResultList();
 	}
+
 }

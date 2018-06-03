@@ -64,6 +64,11 @@ body {
 					<td>${funcionario.departamento}</td>
 					<td><fmt:formatDate pattern="dd/MM/yyyy"
 							value="${funcionario.dataContratacao.time}" /></td>
+					<td>
+					<form action='/remover'" method="POST">
+            <input type="hidden" name="_method" value="DELETE"/>
+<input type="submit" value="remover"/>
+</form></td>
 				</tr>
 			</c:forEach>
 
